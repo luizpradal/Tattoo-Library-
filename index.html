@@ -120,10 +120,25 @@ main{min-height:70vh}
 .glist dd{color:var(--ink)}
 .glist dd em{font-family:var(--serif)}
 
+
+/* ---- notable artists ---- */
+.arts{list-style:none;max-width:64ch}
+.arts li{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:baseline;padding:.7rem 0;border-bottom:1px solid var(--taupe)}
+.arts li:last-child{border-bottom:none}
+.a-name{font-weight:700}
+.a-name a{text-decoration:underline;text-decoration-color:var(--verm);text-underline-offset:3px}
+.a-name a:hover{color:var(--verm)}
+.a-note{display:block;font-family:var(--serif);font-style:italic;color:var(--ink);font-size:.95rem;margin-top:.15rem}
+.a-tag{font-weight:500;font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);text-align:right;white-space:nowrap}
+.a-tag.v{color:var(--verm)}
+.a-rule{font-family:var(--serif);font-style:italic;color:var(--taupe);font-size:.9rem;max-width:60ch;margin-top:.8rem}
+
 @media(max-width:640px){
   .plates{grid-template-columns:1fr}
   .rowlist a{grid-template-columns:1fr}
   .r-side{text-align:left}
+  .arts li{grid-template-columns:1fr}
+  .a-tag{text-align:left}
   .stats{gap:2rem}
 }
 </style>
@@ -419,6 +434,86 @@ const GLOSSARY=[
 ["whip-shading","Whip shading","A flicking shading motion producing a gradient from dense to sparse."]
 ];
 
+
+const ARTISTS={
+"american-traditional":[
+ {n:"Sailor Jerry Collins",note:"Codified the style's rules from Honolulu; the reference point for everything after.",u:null,s:"archival",d:"1911–1973"},
+ {n:"Don Ed Hardy",note:"Sailor Jerry's successor; bridged Japanese composition and Western flash.",u:null,s:"pending"},
+ {n:"Bert Grimm",note:"Pike-era shop tattooer whose flash defined the mid-century American look.",u:null,s:"archival",d:"1900–1985"}],
+"neo-traditional":[
+ {n:"Emily Rose Murray",note:"Painterly femme portraiture inside traditional structure.",u:null,s:"pending"},
+ {n:"Antony Flemming",note:"UK neo-traditional; high-detail illustrative colour work.",u:null,s:"pending"}],
+"irezumi":[
+ {n:"Horiyoshi III",note:"Yokohama master; the living link to the classical bodysuit tradition.",u:null,s:"pending"},
+ {n:"Shige (Yellow Blaze)",note:"Yokohama; large-scale contemporary Japanese, freehand composition.",u:"https://www.instagram.com/shige_yellowblaze/",s:"verified",h:"@shige_yellowblaze"}],
+"black-grey-realism":[
+ {n:"Jack Rudy",note:"Took single-needle grey from East LA into the professional shop.",u:null,s:"pending"},
+ {n:"Freddy Negrete",note:"Pioneer of the prison-honed black and grey style; Shamrock Social Club.",u:"https://www.instagram.com/freddy_negrete/",s:"verified",h:"@freddy_negrete"}],
+"colour-realism":[
+ {n:"Nikko Hurtado",note:"Colour portraiture benchmark; founder of Black Anchor.",u:"https://www.instagram.com/nikkohurtado/",s:"verified",h:"@nikkohurtado"},
+ {n:"Steve Butcher",note:"Hyper-saturated sports and portrait realism.",u:null,s:"pending"}],
+"blackwork":[
+ {n:"Gakkin",note:"Freehand large-scale blackwork; Japanese tradition abstracted to pure black.",u:"https://www.instagram.com/gakkinx/",s:"verified",h:"@gakkinx"},
+ {n:"Roxx",note:"Blackwork and blackout pioneer; founder of 2Spirit.",u:null,s:"pending"}],
+"dotwork":[
+ {n:"Thomas Hooper",note:"Ornamental dotwork's most influential hand.",u:null,s:"pending"},
+ {n:"Kenji Alucky",note:"Stippled blackwork pattern; machine-free influence.",u:null,s:"pending"}],
+"geometric":[
+ {n:"Chaim Machlev (DotsToLines)",note:"Line-based geometry designed to the body's contour; one client a day.",u:"https://www.instagram.com/dotstolines/",s:"verified",h:"@dotstolines"},
+ {n:"Corey Divine",note:"Sacred-geometry-inflected pattern at sleeve and bodysuit scale.",u:null,s:"pending"}],
+"tribal":[
+ {n:"Keone Nunes",note:"Hawaiian uhi revival; hand-tap practice inside protocol.",u:null,s:"pending"},
+ {n:"The Sulu'ape lineage",note:"Samoan tufuga ta tatau family line; custodians of the pe'a tradition.",u:null,s:"archival",d:"continuous lineage"}],
+"fine-line":[
+ {n:"Dr Woo",note:"Single-needle fine line's defining contemporary figure; Hideaway at Suite X.",u:"https://www.instagram.com/_dr_woo_/",s:"verified",h:"@_dr_woo_"},
+ {n:"Mark Mahoney",note:"Godfather of the LA single-needle school; Shamrock Social Club.",u:null,s:"pending"}],
+"illustrative":[
+ {n:"Duncan X",note:"London; bold illustrative blackwork with a singular hand.",u:null,s:"pending"},
+ {n:"Peter Aurisch",note:"Berlin; cubist-inflected illustrative colour.",u:null,s:"pending"}],
+"watercolour":[
+ {n:"Sasha Unisex",note:"The style's defining palette: painted first, tattooed after.",u:"https://www.instagram.com/sashaunisex/",s:"verified",h:"@sashaunisex"},
+ {n:"Ondrash",note:"Czech watercolour pioneer; no-outline painterly work.",u:null,s:"pending"}],
+"new-school":[
+ {n:"Jesse Smith",note:"Narrative cartoon worlds; the style's contemporary standard-bearer.",u:null,s:"pending"},
+ {n:"Jime Litwalk",note:"Graffiti-fed exaggeration at full saturation.",u:null,s:"pending"}],
+"chicano":[
+ {n:"Mister Cartoon",note:"Fine-line black and grey and Old English lettering; LA hip-hop's house artist.",u:"https://www.mistercartoon.com",s:"verified",h:"mistercartoon.com"},
+ {n:"Freddy Negrete",note:"Smile-now-cry-later originator; the style's living historian.",u:"https://www.instagram.com/freddy_negrete/",s:"verified",h:"@freddy_negrete"},
+ {n:"Jack Rudy",note:"Co-built the professional black and grey shop tradition.",u:null,s:"pending"}],
+"lettering":[
+ {n:"BJ Betts",note:"Author of the standard lettering guidebooks; typography's tattoo ambassador.",u:"https://www.instagram.com/bjbetts/",s:"verified",h:"@bjbetts"},
+ {n:"Big Meas",note:"Ornate script and swash systems at large scale.",u:null,s:"pending"}],
+"trash-polka":[
+ {n:"Simone Pfaff & Volko Merschky",note:"The style's authors; Buena Vista Tattoo Club, Wurzburg.",u:"https://www.instagram.com/buenavistatattooclub/",s:"verified",h:"@buenavistatattooclub"}],
+"sketch":[
+ {n:"Inez Janiak",note:"Polish sketch style; raw multi-pass line.",u:null,s:"pending"},
+ {n:"Frank Carrilho",note:"Chaotic-line figurative sketch work.",u:null,s:"pending"}],
+"surrealism":[
+ {n:"Arlo DiCristina",note:"Morphing photoreal surrealism.",u:null,s:"pending"},
+ {n:"Jesse Rix",note:"Dimensional illusion and layered-reality concepts.",u:null,s:"pending"}]
+};
+
+
+const VIDEOS={
+"black-grey-realism":[
+ {t:"Tattoo Nation: Official Trailer",ch:"Movieclips Trailers",note:"The feature documentary on how prison-honed black and grey became a movement; Rudy, Negrete and Cartwright tell it themselves.",u:"https://www.youtube.com/watch?v=vMFbIY-n7hM"}],
+"chicano":[
+ {t:"Tattoo Nation: Official Trailer",ch:"Movieclips Trailers",note:"The canonical film on the East LA origins of fine-line black and grey.",u:"https://www.youtube.com/watch?v=vMFbIY-n7hM"}],
+"irezumi":[
+ {t:"Horiyoshi III: Inside His Studio",ch:"ITN / press feature",note:"The Yokohama master at work on traditional full-body horimono.",u:"https://www.youtube.com/watch?v=rTQy2LX8Hso"},
+ {t:"73-Year-Old Tattoo Artist Is a Legend in Japan",ch:"Press feature",note:"Horiyoshi III and the contested history of Japanese tattooing.",u:"https://www.youtube.com/watch?v=lrgyYLQP7Vs"},
+ {t:"The Sacred Art of the Japanese Tattoo",ch:"Interview feature",note:"A sit-down with Horiyoshi III on shu-ha-ri and the philosophy behind the suit.",u:"https://www.youtube.com/watch?v=oy6rdkBC13Y"}],
+"tebori":[
+ {t:"The Sacred Art of the Japanese Tattoo",ch:"Interview feature",note:"Horiyoshi III on tradition, technique and transcendence.",u:"https://www.youtube.com/watch?v=oy6rdkBC13Y"}],
+"batok":[
+ {t:"Whang-Od: The Last True Tattoo Artist",ch:"Short film",note:"The Kalinga mambabatok practising batok in Buscalan.",u:"https://www.youtube.com/watch?v=0JcOncWUUvM"}],
+"tribal":[
+ {t:"Whang-Od: The Last True Tattoo Artist",ch:"Short film",note:"A living indigenous tradition, filmed at source.",u:"https://www.youtube.com/watch?v=0JcOncWUUvM"}],
+"fine-line":[
+ {t:"Celebrity Tattoo Artist Dr Woo Adds Ink to GQ",ch:"British GQ",note:"The single-needle standard-bearer at work.",u:"https://www.youtube.com/watch?v=xH7c4QGoMiA"},
+ {t:"Tattoo Age: Dr. Woo",ch:"VICE",note:"Episode-length profile of the fine-line school and its Shamrock lineage.",u:"https://www.youtube.com/watch?v=ZtlYHsJ2hC8"}]
+};
+
 /* ---------- APP ---------- */
 const app=document.getElementById('app');
 const FAMILIES=[...new Set(STYLES.map(s=>s.family))];
@@ -453,6 +548,7 @@ function renderHome(){
     <div class="stat"><b>${STYLES.length}</b><span>STYLES CATALOGUED</span></div>
     <div class="stat"><b>${cores}</b><span>FULL ARTICLES</span></div>
     <div class="stat"><b>${GLOSSARY.length}</b><span>GLOSSARY TERMS</span></div>
+    <div class="stat"><b>${Object.values(ARTISTS).flat().filter(a=>a.s==='verified').length+new Set(Object.values(VIDEOS).flat().map(v=>v.u)).size}</b><span>VERIFIED REFERENCES</span></div>
   </div>
   <hr class="rule">
   <input class="search" id="q" type="search" placeholder="Search styles, aliases, motifs..." value="${q.replace(/"/g,'&quot;')}" aria-label="Search the library">
@@ -525,6 +621,26 @@ function renderStyle(id){
   if(s.aliases&&s.aliases.length){
     html+=secHead(++n,'ALSO KNOWN AS')+`<p class="motifs">${s.aliases.join(' · ')}</p>`;
   }
+  const arts=ARTISTS[s.id];
+  if(arts&&arts.length){
+    html+=secHead(++n,'NOTABLE ARTISTS');
+    html+=`<ul class="arts">`+arts.map(a=>{
+      const name=a.u?`<a href="${a.u}" target="_blank" rel="noopener">${a.n}</a>`:a.n;
+      const tag=a.s==='verified'?`<span class="a-tag v">VERIFIED · ${a.h} ↗</span>`
+        :a.s==='archival'?`<span class="a-tag">ARCHIVAL · ${a.d}</span>`
+        :`<span class="a-tag">LINK PENDING VERIFICATION</span>`;
+      return `<li><span><span class="a-name">${name}</span><span class="a-note">${a.note}</span></span>${tag}</li>`;
+    }).join('')+`</ul>`;
+    html+=`<p class="a-rule">House rule: a link ships only once the account is verified. Named artists without links are on the verification queue, not omitted.</p>`;
+  }
+  const vids=VIDEOS[s.id]||[];
+  html+=secHead(++n,'WATCHLIST');
+  html+=`<ul class="arts">`;
+  html+=vids.map(v=>`<li><span><span class="a-name"><a href="${v.u}" target="_blank" rel="noopener">${v.t}</a></span><span class="a-note">${v.ch}. ${v.note}</span></span><span class="a-tag v">VERIFIED ↗</span></li>`).join('');
+  const yq=encodeURIComponent(s.name+" tattoo");
+  html+=`<li><span><span class="a-name"><a href="https://www.youtube.com/results?search_query=${yq}&sp=CAM%3D" target="_blank" rel="noopener">Top ${s.name} videos on YouTube</a></span><span class="a-note">Live search, sorted by view count. Always current, never a dead link.</span></span><span class="a-tag">LIVE SEARCH ↗</span></li>`;
+  html+=`</ul>`;
+  if(!vids.length){html+=`<p class="a-rule">No individually verified videos ship for this entry yet; the live search stands in until curation reaches it.</p>`;}
   html+=secHead(++n,'RELATED & DESCENDANT STYLES')+relChips(s.related||[]);
   html+=`<hr class="rule"><p class="crumb"><a href="#/">← BACK TO THE INDEX</a> &nbsp;·&nbsp; <a href="#/glossary">GLOSSARY →</a></p>`;
   app.innerHTML=html;
