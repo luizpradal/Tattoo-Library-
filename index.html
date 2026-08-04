@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No Regrets ◆ The Style Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#ECE4CF; --ink:#0A0A0A; --verm:#DE4120; --taupe:#9C9486;
+  --sans:'Inter',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --serif:'Source Serif 4',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--ink)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--verm);outline-offset:3px}
+
+/* ---- global strips ---- */
+.strip{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  font-weight:500;font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  padding:1.1rem 0}
+.strip .dia{color:var(--verm)}
+.strip a{text-decoration:none}
+.strip a:hover{color:var(--verm)}
+.strip.top{border-bottom:1px solid var(--taupe)}
+.strip.bottom{border-top:1px solid var(--taupe);color:var(--taupe);margin-top:4.5rem}
+.strip.bottom a{color:var(--taupe)}
+.wrap{max-width:900px;margin:0 auto;padding:0 1.4rem}
+main{min-height:70vh}
+
+/* ---- type roles ---- */
+.eyebrow{color:var(--verm);font-weight:500;font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;margin:3.2rem 0 1rem}
+.eyebrow .meta{color:var(--taupe)}
+.display{font-weight:900;text-transform:uppercase;letter-spacing:-.02em;
+  font-size:clamp(2.3rem,6.4vw,4.4rem);line-height:1.02;margin-bottom:1.4rem;max-width:14ch}
+.display .pay{color:var(--verm);display:block}
+.dek{font-family:var(--serif);font-style:italic;font-size:1.12rem;line-height:1.55;
+  max-width:52ch;margin-bottom:2.6rem}
+.rule{border:none;border-top:1px solid var(--taupe);margin:2.6rem 0}
+
+/* ---- stat row ---- */
+.stats{display:flex;gap:3rem;flex-wrap:wrap;margin:1rem 0 0}
+.stat b{display:block;color:var(--verm);font-weight:900;font-size:3.4rem;letter-spacing:-.01em;line-height:1}
+.stat span{display:block;margin-top:.5rem;font-weight:500;font-size:9px;letter-spacing:.26em;text-transform:uppercase}
+
+/* ---- search + chips ---- */
+.search{width:100%;background:transparent;border:none;border-bottom:1px solid var(--ink);
+  font-family:var(--sans);font-size:1.25rem;font-weight:700;color:var(--ink);
+  padding:.7rem 0;margin:.4rem 0 1.4rem}
+.search::placeholder{color:var(--taupe);font-weight:400}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.chip{background:transparent;border:1px solid var(--taupe);color:var(--ink);cursor:pointer;
+  font-family:var(--sans);font-weight:500;font-size:9.5px;letter-spacing:.18em;
+  text-transform:uppercase;padding:.45rem .8rem}
+.chip:hover{border-color:var(--ink)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+
+/* ---- index list ---- */
+.fam-head{display:flex;align-items:baseline;gap:.9rem;margin:2.8rem 0 .4rem}
+.fam-head b{color:var(--verm);font-weight:900;font-size:14px}
+.fam-head span{font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+.rowlist{list-style:none}
+.rowlist li{border-bottom:1px solid var(--taupe)}
+.rowlist a{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:1rem;
+  text-decoration:none;padding:.85rem 0}
+.rowlist a:hover .r-name{color:var(--verm)}
+.r-name{font-weight:700;font-size:1.05rem;letter-spacing:-.01em}
+.r-tag{font-family:var(--serif);font-style:italic;color:var(--taupe);font-size:.92rem}
+.r-side{font-weight:500;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);text-align:right}
+.r-side .stub{color:var(--verm)}
+.empty{font-family:var(--serif);font-style:italic;color:var(--taupe);padding:2rem 0}
+
+/* ---- article ---- */
+.crumb{margin-top:2.4rem}
+.crumb a{text-decoration:none;font-weight:500;font-size:10px;letter-spacing:.22em;text-transform:uppercase}
+.crumb a:hover{color:var(--verm)}
+.sec{display:flex;align-items:baseline;gap:.9rem;margin:2.8rem 0 1rem}
+.sec b{color:var(--verm);font-weight:900;font-size:14px}
+.sec span{font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+.body p{max-width:64ch;margin-bottom:1rem}
+.body ul{max-width:64ch;list-style:none}
+.body ul li{padding:.55rem 0;border-bottom:1px solid var(--taupe)}
+.body ul li:last-child{border-bottom:none}
+.motifs{font-family:var(--serif);font-style:italic;font-size:1.05rem;max-width:56ch}
+.gl{color:var(--ink);text-decoration:underline;text-decoration-color:var(--verm);text-underline-offset:3px}
+.gl:hover{color:var(--verm)}
+
+/* ---- plates (image placeholders) ---- */
+.plates{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:2.4rem 0}
+.plates.single{grid-template-columns:1fr}
+.plate{aspect-ratio:3/2;border:1px solid var(--taupe);position:relative;
+  background:repeating-linear-gradient(45deg,transparent,transparent 9px,rgba(156,148,134,.22) 9px,rgba(156,148,134,.22) 10px)}
+.plate div{position:absolute;left:.9rem;bottom:.8rem;right:.9rem}
+.plate b{display:block;font-weight:500;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase}
+.plate b i{font-style:normal;color:var(--verm)}
+.plate span{display:block;margin-top:.25rem;font-weight:500;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe)}
+
+/* ---- related ---- */
+.rel{display:flex;flex-wrap:wrap;gap:.5rem}
+.rel a{text-decoration:none;border:1px solid var(--taupe);padding:.45rem .8rem;
+  font-weight:500;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase}
+.rel a:hover{border-color:var(--verm);color:var(--verm)}
+
+/* ---- stub note (dark callout) ---- */
+.stubnote{background:var(--ink);color:var(--cream);padding:1.6rem 1.8rem;margin:2.6rem 0;max-width:64ch}
+.stubnote b{display:block;font-weight:900;text-transform:uppercase;font-size:1.15rem;letter-spacing:-.01em;line-height:1.25}
+.stubnote b i{font-style:normal;color:var(--verm)}
+.stubnote span{display:block;margin-top:.6rem;font-weight:500;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
+
+/* ---- glossary ---- */
+.glist{max-width:64ch}
+.glist dt{font-weight:700;margin-top:1.4rem;scroll-margin-top:1.5rem}
+.glist dt.hit{color:var(--verm)}
+.glist dd{color:var(--ink)}
+.glist dd em{font-family:var(--serif)}
+
+@media(max-width:640px){
+  .plates{grid-template-columns:1fr}
+  .rowlist a{grid-template-columns:1fr}
+  .r-side{text-align:left}
+  .stats{gap:2rem}
+}
+</style>
+</head>
+<body>
+<header class="wrap"><div class="strip top">
+  <span><a href="#/">NO REGRETS</a> <span class="dia">◆</span> THE STYLE LIBRARY</span>
+  <span><a href="#/">INDEX</a> · <a href="#/glossary">GLOSSARY</a></span>
+</div></header>
+
+<main class="wrap" id="app"></main>
+
+<footer class="wrap"><div class="strip bottom">
+  <span>INTERNAL MOCK-UP · 2026</span>
+  <span>EVERY STYLE, ONE SHELF · CONCEPT PROOF</span>
+</div></footer>
+
+<script>
+const STYLES=[
+/* ---------- CORE ARTICLES ---------- */
+{id:"american-traditional",name:"American Traditional",tag:"Bold will hold.",family:"Traditional & Folk",era:"1900s onward",region:"United States",status:"core",aliases:["Old School","Trad","Western Traditional"],
+dek:"The foundation grammar of Western tattooing: bold lines, a fixed palette, and imagery built to outlive its wearer.",
+history:["Rooted in the port cities and naval traditions of the late nineteenth and early twentieth centuries, American Traditional was codified by artists such as Sailor Jerry Collins, who fused American folk imagery with Japanese compositional discipline. Its rules were practical before they were aesthetic: thick outlines and dense pigment survived rough healing and decades of sun.","The style passed through biker culture and the 1970s tattoo renaissance largely intact, and its vocabulary now functions as the shared reference point of Western tattooing. Bold will hold remains its working motto."],
+visual:["Heavy, uniform black outlines","Limited palette: red, yellow, green, black, occasional blue","Flat colour packing with minimal gradation","Black whip shading for depth","Composition designed to age, with open skin between elements"],
+motifs:"Swallows, anchors, roses, daggers, panthers, ships, hearts, eagles, pin-ups.",
+context:"Born in Western maritime and military culture, where designs carried coded meanings: a swallow for distance sailed, an anchor for stability. Flash sheets, pre-drawn designs sold off the wall, are this style's native publishing format.",
+technical:"Typically executed with larger liner groupings and magnums. It ages more reliably than any other Western style, which is why century-old flash remains tattooable today. See <a class='gl' href='#/glossary/whip-shading'>whip shading</a> and <a class='gl' href='#/glossary/flash'>flash</a>.",
+related:["neo-traditional","new-school","lettering","chicano"]},
+
+{id:"neo-traditional",name:"Neo-Traditional",tag:"The old rules, new blood.",family:"Traditional & Folk",era:"1980s onward",region:"United States / United Kingdom",status:"core",aliases:["Neo-Trad"],
+dek:"Traditional's rulebook with the palette unlocked: modern illustration inside old-school structure.",
+history:["Emerging through the 1980s and 1990s as machines, needles and pigments improved, Neo-Traditional kept the bold-outline logic of American Traditional while borrowing from Art Nouveau, Art Deco and contemporary illustration.","It grew into one of the dominant custom styles of the 2000s and 2010s, prized for the way it balances longevity with painterly ambition."],
+visual:["Varied line weights within a single piece","Extended, often jewel-toned palette","Dimensional shading and gradient work","Decorative framing devices: gems, filigree, drapery"],
+motifs:"Animal portraits, femme faces, florals, lanterns, jewels, birds of prey.",
+context:"A bridge style: readable to traditionalists, expressive enough for illustrators, which explains its long dominance of the convention circuit.",
+technical:"Rewards larger scale. Fine internal detail needs the anchor of a strong outline to age predictably.",
+related:["american-traditional","illustrative","new-school"]},
+
+{id:"irezumi",name:"Japanese (Irezumi)",tag:"The body as a single canvas.",family:"Japanese & East Asian",era:"1600s onward",region:"Japan",status:"core",aliases:["Horimono","Wabori","Traditional Japanese"],
+dek:"The Japanese tradition of the total composition: imagery drawn from centuries of shared iconography, mapped to the whole body.",
+history:["Japanese tattooing matured in the Edo period (1603–1868), when woodblock prints and the illustrated Suikoden popularised full-body work among labourers and firemen. Later periods of prohibition pushed it underground and bound it, in the public mind, to the yakuza, an association the tradition still negotiates.","Contemporary Irezumi spans machine work and tebori hand technique, with the traditional apprenticeship system persisting alongside internationally trained artists."],
+visual:["Unified backgrounds of wind, water and cloud binding motifs together","Bold outlines with graded black and controlled colour","Composition mapped to musculature: sleeves, bodysuits, backpieces","Strict motif pairings and seasonal logic"],
+motifs:"Koi, dragons, hannya masks, peonies, chrysanthemums, tigers, waves, warriors.",
+context:"Motif combinations follow iconographic rules: a koi ascending a waterfall speaks of perseverance, and pairing flora out of season reads as illiterate to trained eyes. Cultural fluency is part of the craft, not an accessory to it.",
+technical:"Large-scale planning is the discipline, and backgrounds are as technically demanding as subjects. See <a class='gl' href='#/glossary/tebori'>tebori</a> for the machine-free lineage.",
+related:["tebori","blackwork","anime"]},
+
+{id:"black-grey-realism",name:"Black & Grey Realism",tag:"A photograph in smoke.",family:"Realism",era:"1970s onward",region:"United States (Los Angeles)",status:"core",aliases:["B&G","Black and Gray"],
+dek:"Photographic tone without colour: the style that turned greywash into an instrument.",
+history:["Black and grey emerged from 1970s Chicano communities in Los Angeles, and inside prison walls, where single needles and diluted ink made soft, smoky portraiture possible. Artists such as Jack Rudy and Freddy Negrete carried the technique into street shops and gave it a professional standard.","It has since become a global default for portraiture, religious imagery and cinematic composition, with modern rotary machines extending its tonal range."],
+visual:["Greywash tonal gradients from near-white to full black","Soft edges and rendered form over hard outline","High-contrast lighting logic borrowed from photography","Fine detail sustained at large scale"],
+motifs:"Portraits, religious iconography, clocks, roses, hands, film imagery.",
+context:"Its Chicano roots remain visible in the style's devotional and family-centred subject matter. See Chicano for the parent tradition.",
+technical:"Depends on dilution control and awareness of the client's skin tone. Healed contrast is always softer than fresh, so good artists build in headroom. See <a class='gl' href='#/glossary/greywash'>greywash</a>.",
+related:["chicano","colour-realism","portrait","micro-realism"]},
+
+{id:"colour-realism",name:"Colour Realism",tag:"Pigment as light.",family:"Realism",era:"1990s onward",region:"Global",status:"core",aliases:["Color Realism","Realistic Colour"],
+dek:"Full-spectrum photographic rendering: skin treated as a photographic print.",
+history:["Once black and grey had proved photographic rendering possible, colour realism developed through the 1990s and 2000s as pigment chemistry and machine control improved.","The contemporary scene pushes hyperreal saturation, with an honest ongoing debate about long-term ageing versus black-anchored work."],
+visual:["No outlines, or minimal structural line","Layered colour blending and glazing","Photographic light, reflection and depth of field","High saturation contrast"],
+motifs:"Portraits, wildlife, botanical close-ups, pop-culture imagery.",
+context:"The style most shaped by social media, where fresh, saturated photographs circulate endlessly. Healed results are the honest benchmark, and studios should present them.",
+technical:"Colour-over-colour layering demands healed-skin knowledge, and periodic touch-up is part of the covenant with the client. See <a class='gl' href='#/glossary/touch-up'>touch-up</a>.",
+related:["black-grey-realism","hyperrealism","portrait"]},
+
+{id:"blackwork",name:"Blackwork",tag:"Ink at full weight.",family:"Black & Graphic",era:"Ancient roots, 2000s revival",region:"Global / Europe",status:"core",aliases:["Heavy Black"],
+dek:"One pigment, total commitment: mass, contrast and negative space doing all the work.",
+history:["Blackwork's ancestry is ancient: solid black tattooing appears across Polynesian, Bornean and North African traditions. The contemporary Western style coalesced in the 2000s as artists fused that weight with graphic art, engraving and illustration.","It now spans delicate linework through to full blackout coverage, and functions as an umbrella for much of modern European tattooing."],
+visual:["Black ink only","Weight used as composition: mass against open skin","Graphic, high-contrast readability at distance","Frequent structural use of negative space"],
+motifs:"Botanical, occult and folk imagery, geometry, abstraction, pattern.",
+context:"Inherits gravity from indigenous solid-black traditions while remaining a distinct, modern graphic language. The two should be credited separately.",
+technical:"Large black fields require even packing and disciplined edges; patchy healing is unforgiving in a style with nowhere to hide. See <a class='gl' href='#/glossary/packing'>packing</a>.",
+related:["blackout","dotwork","tribal","etching","linework"]},
+
+{id:"dotwork",name:"Dotwork",tag:"Tone, one dot at a time.",family:"Black & Graphic",era:"2000s onward",region:"Europe",status:"core",aliases:["Stippling"],
+dek:"Tone built from thousands of individual decisions: engraving's patience translated to skin.",
+history:["Stippling entered tattooing from engraving and pen-and-ink illustration, and became a named style in 2000s Europe, usually travelling alongside sacred geometry and ornamental work.","Hand-poke practitioners adopted it early, since the technique suits machine-free work naturally."],
+visual:["Tone created by dot density rather than wash","Matte, textural surfaces","Crisp geometry set against organic shading","Black or near-black only, as a rule"],
+motifs:"Mandalas, sacred geometry, ornamental panels, insects, celestial forms.",
+context:"The meditative pace is part of the identity: a large dotwork piece advertises patience on both sides of the needle.",
+technical:"Executed by machine or by hand. Dot spacing must anticipate how skin spreads over years; dots placed too densely merge into grey. See <a class='gl' href='#/glossary/stippling'>stippling</a> and <a class='gl' href='#/glossary/hand-poke'>hand-poke</a>.",
+related:["geometric","mandala","sacred-geometry","handpoke","ornamental"]},
+
+{id:"geometric",name:"Geometric",tag:"Symmetry as subject.",family:"Geometric & Ornamental",era:"2010s onward",region:"Global",status:"core",aliases:[],
+dek:"Precision as ornament: repeated form, mirror logic, and pattern mapped to a surface that is never flat.",
+history:["Geometric tattooing rose with the 2010s wave of graphic work, drawing on sacred geometry, textile pattern and computational art.","Instagram's grid rewarded its clean readability, accelerating its spread from European studios outward."],
+visual:["Precise repeated forms and pattern fills","Linework and dotwork hybrids","Mirror and radial symmetry mapped to the body","Panel construction across limbs"],
+motifs:"Polyhedra, tessellations, linear bands, mandala structures.",
+context:"Overlaps heavily with ornamental and sacred geometry traditions, distinguished mainly by its secular, mathematical register.",
+technical:"Symmetry is merciless on a surface that is not flat. Stencilling and body-mapping are most of the craft. See <a class='gl' href='#/glossary/stencil'>stencil</a>.",
+related:["dotwork","ornamental","sacred-geometry","linework"]},
+
+{id:"tribal",name:"Tribal (Umbrella)",tag:"The oldest language on skin.",family:"Indigenous & Sacred",era:"Ancient, 1990s Western revival",region:"Pacific, South-East Asia, worldwide",status:"core",aliases:["Indigenous traditions"],
+dek:"A Western umbrella term for the world's indigenous tattoo traditions, each with its own grammar, tools and protocols.",
+history:["Tribal is shorthand for many distinct practices: Polynesian tatau, Maori ta moko, Bornean designs, Filipino batok, Northwest Coast formline and others. The 1990s Western boom abstracted these into solid black flash, frequently without context or credit.","The last two decades have seen a revival led from within the source cultures, with practitioners reclaiming protocols, tools and meanings, and the umbrella term itself increasingly giving way to the specific names."],
+visual:["Solid black fields with bold curvilinear or rectilinear pattern","Design following body contour and musculature","Pattern elements carrying lineage, status and biographical meaning in source traditions"],
+motifs:"Varies entirely by tradition; see the individual entries linked below.",
+context:"These are living cultural practices, not a menu. Wearing closed patterns without standing in the culture is a genuine matter of protocol, and a serious studio should be able to advise clients on respectful alternatives, such as kirituhi in the Maori context.",
+technical:"Large solid black demands the same discipline as blackout work. Traditional tools, uhi and hand-tap instruments, survive and lead in revival practice. See <a class='gl' href='#/glossary/uhi'>uhi</a>.",
+related:["polynesian","maori","iban","batok","haida","neo-tribal","blackwork"]},
+
+{id:"fine-line",name:"Fine Line",tag:"Maximum image, minimum needle.",family:"Fine Line & Minimal",era:"1970s origins, 2010s wave",region:"United States, then global",status:"core",aliases:["Fineline"],
+dek:"Thin, precise, quiet: the dominant first-tattoo style of the contemporary West.",
+history:["Single-needle work was pioneered in 1970s Los Angeles within the Chicano tradition. The contemporary fine-line wave arrived in the 2010s through celebrity artists and social media, recasting the technique as minimal and delicate.","It is now the highest-volume entry point into tattooing in most Western cities, and the style most requested by first-time clients."],
+visual:["Very thin, consistent line","Little or no shading, or soft micro-shading","Small scale and deliberate placement","High skin-to-ink ratio"],
+motifs:"Script, botanicals, symbols, micro portraits, dates and coordinates.",
+context:"Ubiquity is its risk. Fine line heals less forgivingly than its Instagram presence suggests, and honest consultation about ageing is a mark of a serious studio.",
+technical:"Single-needle and small liner groupings, with shallow margins for error. Healed line spread must be designed in from the start. See <a class='gl' href='#/glossary/single-needle'>single needle</a>.",
+related:["single-needle","minimalist","micro-realism","chicano"]},
+
+{id:"illustrative",name:"Illustrative",tag:"Drawn, not photographed.",family:"Illustrative & Painterly",era:"Contemporary",region:"Global",status:"core",aliases:[],
+dek:"The artist's hand kept visible: tattooing that reads as drawing rather than rendering.",
+history:["Illustrative tattooing grew as art-school-trained tattooers imported their drawing languages: etching, comics, children's book illustration, printmaking. It hardened into a named category through the 2010s custom boom.","It is less a single style than a licence: line-led work in which the individual hand is the signature."],
+visual:["Visible line character and gesture","Hybrid shading: hatching, stipple, soft wash","A personal, recognisable hand over genre conformity","Wide palette freedom"],
+motifs:"Fauna, flora, figures, folklore, narrative scenes.",
+context:"The natural home of artists with illustration backgrounds, and the category most defined by the individual rather than the genre.",
+technical:"Technically permissive but consistency-hungry: a wavering line is the style, right up until it is a flaw.",
+related:["sketch","etching","watercolour","neo-traditional"]},
+
+{id:"watercolour",name:"Watercolour",tag:"Paint that never dries.",family:"Illustrative & Painterly",era:"Late 2000s onward",region:"Global",status:"core",aliases:["Watercolor"],
+dek:"Wet-media effects on skin: bleeds, splashes and unbounded colour fields.",
+history:["Watercolour tattooing appeared in the late 2000s, translating painterly effects onto skin: colour bleeds, splash textures, fields without borders.","Early no-outline work aged poorly and taught the style discipline. Contemporary watercolour usually anchors its colour with structural line or a black underlayer."],
+visual:["Soft colour transitions and splash textures","Absent or partial outlines","White-space composition borrowed from paper","Painterly, feathered edges"],
+motifs:"Florals, birds, abstract colour fields, brush strokes.",
+context:"A recurring case study in the ageing debate. The modern consensus is hybrid construction: paint on the surface, armature underneath.",
+technical:"Colour without black anchors fades diffusely. Artists either build black structure or schedule refreshes openly with the client.",
+related:["illustrative","abstract","sketch"]},
+
+{id:"new-school",name:"New School",tag:"Cartoon physics, permanent ink.",family:"Traditional & Folk",era:"Late 1980s onward",region:"United States (West Coast)",status:"core",aliases:["Newschool"],
+dek:"Graffiti energy and cartoon anatomy: exaggeration as the organising principle.",
+history:["New School exploded out of late-1980s and 1990s West Coast tattooing, importing graffiti, skate graphics and Saturday-morning cartoons. Exaggeration was the point: bulging perspective, impossible squash and stretch.","After a 2000s peak it receded for a decade, and is currently enjoying a genuine revival alongside the broader Y2K aesthetic cycle."],
+visual:["Exaggerated proportion and forced perspective","Hyper-saturated palette","Thick, confident outlines","Comic rendering: speed lines, gloss highlights, chrome"],
+motifs:"Cartoon characters, food with faces, chrome objects, bubble letters.",
+context:"Shares DNA with graffiti lettering and the Y2K revival; see the linked entries for both branches.",
+technical:"High-chroma saturation demands dense, even packing. Ages boldly, like its ancestor Traditional.",
+related:["american-traditional","graffiti","chrome-y2k","kawaii"]},
+
+{id:"chicano",name:"Chicano",tag:"Fine line, deep roots.",family:"Traditional & Folk",era:"1940s onward",region:"United States (East Los Angeles)",status:"core",aliases:["Payasa style"],
+dek:"A community tradition first: family, faith, loss and neighbourhood pride in smooth single-needle grey.",
+history:["Chicano tattooing grew from 1940s pachuco culture through East Los Angeles in the 1960s and 1970s, where hand-built machines and single needles produced the smooth grey portraiture the world now calls black and grey.","Its influence runs through realism, fine line and lettering alike, making it arguably the most consequential regional style in Western tattooing."],
+visual:["Fine single-needle linework","Soft, smoky greywash","Script integrated with imagery as one composition","Devotional, narrative framing"],
+motifs:"Payasa faces, smile-now-cry-later masks, Our Lady of Guadalupe, lowriders, script.",
+context:"The imagery carries lived meaning: family, faith, grief, pride of place. Borrowing it without understanding reads as costume, and iconography questions belong in consultation.",
+technical:"The origin point of single-needle technique. See fine line and black and grey realism for its two great descendants.",
+related:["black-grey-realism","fine-line","lettering","single-needle"]},
+
+{id:"lettering",name:"Lettering & Script",tag:"The word made flesh.",family:"Lettering",era:"Ancient content, modern specialism",region:"Global",status:"core",aliases:["Script","Calligraphy"],
+dek:"Typography with a pulse: custom letterforms drawn for one body, once.",
+history:["Words are among tattooing's oldest content, but lettering as a specialist discipline matured through Chicano script, block styles, graffiti and sign-painting.","Contemporary lettering artists work like typographers, drawing custom alphabets per client rather than tracing fonts."],
+visual:["Custom-drawn letterforms, never fonts","Spacing and flow mapped to anatomy","Range from single-needle script to heavy blackletter","Flourish and swash systems"],
+motifs:"Names, dates, mottoes, prayers, ambigrams.",
+context:"The highest-stakes style per square centimetre: spelling, kerning and translation errors are permanent. A written proofing protocol is a studio responsibility, not a courtesy.",
+technical:"Letterform integrity must survive skin spread; thin scripts need wider spacing than paper intuition suggests. See <a class='gl' href='#/glossary/stencil'>stencil</a>.",
+related:["chicano","gothic-blackletter","graffiti","fine-line"]},
+
+{id:"trash-polka",name:"Trash Polka",tag:"Chaos, composed.",family:"Contemporary & Digital",era:"2000s onward",region:"Germany (Wurzburg)",status:"core",aliases:[],
+dek:"A collage in red and black: photorealism, smears, geometry and typography in deliberate collision.",
+history:["Trash Polka was created in the 2000s by Simone Pfaff and Volko Merschky at Buena Vista Tattoo Club in Wurzburg, Germany, as a manifesto style: realism as melody, chaos as rhythm, in strict red and black.","Widely imitated since, it remains tightly associated with its originators, a rare case of a tattoo style with named authors."],
+visual:["Red and black only","Photoreal fragments set against abstract marks","Typography and graphic slashes as compositional elements","Large-scale, asymmetric composition"],
+motifs:"Faces, clockwork, text fragments, brush smears, collage seams.",
+context:"Because the style has authors and a stated constraint, derivative work outside the red-black rule is better described as graphic collage than as Trash Polka.",
+technical:"Composition is the craft. The style dies at small scale, where the collision becomes clutter.",
+related:["black-grey-realism","abstract","graffiti","glitch"]},
+
+{id:"sketch",name:"Sketch",tag:"The construction lines stay.",family:"Illustrative & Painterly",era:"2010s onward",region:"Europe / Global",status:"core",aliases:["Sketchwork"],
+dek:"The energy of the preparatory drawing, kept in the finished piece.",
+history:["Sketch style emerged in the 2010s, preserving what other styles erase: rough construction lines, hatching, incomplete contours.","It overlaps with illustrative and abstract work, and is often stabilised with geometric anchors or a single rendered focal point."],
+visual:["Multiple loose passes of line","Visible hatching and gesture","Deliberate incompleteness","Monochrome or restrained colour"],
+motifs:"Animals in motion, figures, architectural fragments.",
+context:"Reads as spontaneous but is planned to the millimetre: the chaos is drafted, rehearsed and stencilled.",
+technical:"A loose line still heals permanently. Artists rehearse the gesture until it is repeatable on demand. See <a class='gl' href='#/glossary/freehand'>freehand</a>.",
+related:["illustrative","abstract","linework"]},
+
+{id:"surrealism",name:"Surrealism",tag:"Dream logic on skin.",family:"Realism",era:"Contemporary",region:"Global",status:"core",aliases:["Surrealist"],
+dek:"Realist rendering pointed at impossible subjects: the subconscious with a rendering engine.",
+history:["Surrealist tattooing borrows the art movement's dream logic: impossible junctions, melting forms, symbolic substitution. It grew alongside realism, which supplied the technique.","Contemporary surrealists combine photoreal rendering with digital-collage composition, and the style rewards concept as much as execution."],
+visual:["Realist rendering of impossible subjects","Morphing transitions between forms","Strong single-image concepts","Colour or black and grey"],
+motifs:"Eyes, hands, split faces, dreamscape hybrids, floating architecture.",
+context:"A concept-first style: the idea is the commission, and consultation resembles art direction more than flash selection.",
+technical:"Inherits realism's full technical burden. The transitions between rendered elements are where quality shows first.",
+related:["colour-realism","black-grey-realism","dark-art","biomechanical"]},
+/* ---------- SUB-STYLES (STUBS) ---------- */
+{id:"polynesian",name:"Polynesian (Tatau)",tag:"The word itself.",family:"Indigenous & Sacred",era:"Ancient, continuous",region:"Samoa, Tahiti, wider Pacific",status:"stub",aliases:["Tatau","Samoan","Tahitian"],
+overview:"The Samoan, Tahitian and wider Pacific traditions from which the English word tattoo derives. Pattern systems encode genealogy, rank and duty, and the Samoan pe'a and malu remain conferred within the culture, not purchased outside it.",related:["tribal","maori","haida"]},
+{id:"maori",name:"Maori / Ta Moko",tag:"Identity, not decoration.",family:"Indigenous & Sacred",era:"Ancient, continuous",region:"Aotearoa New Zealand",status:"stub",aliases:["Ta Moko","Kirituhi"],
+overview:"Ta moko is a taonga, a treasure, of Maori culture, with facial and body patterns tied to whakapapa. Kirituhi denotes Maori-style work open to outsiders; moko itself is not, and the distinction is the protocol.",related:["polynesian","tribal"]},
+{id:"iban",name:"Iban / Bornean",tag:"The bunga terung and beyond.",family:"Indigenous & Sacred",era:"Ancient, revival",region:"Borneo",status:"stub",aliases:["Dayak","Bornean"],
+overview:"Bornean traditions including the Iban bunga terung shoulder rosette, historically marking journeys and passage into adulthood. Revived by Dayak practitioners working with hand-tap methods and documented pattern lineages.",related:["tribal","handpoke"]},
+{id:"batok",name:"Batok",tag:"The Kalinga revival.",family:"Indigenous & Sacred",era:"Ancient, revival",region:"Philippines (Kalinga)",status:"stub",aliases:["Batek","Filipino traditional"],
+overview:"Filipino hand-tap tattooing carried into the present by Kalinga mambabatok Whang-od Oggay, whose apprentices continue a village practice that came close to vanishing in the twentieth century.",related:["tribal","handpoke"]},
+{id:"sak-yant",name:"Sak Yant",tag:"Protection, by hand.",family:"Indigenous & Sacred",era:"Centuries old, continuous",region:"Thailand / Cambodia",status:"stub",aliases:["Yantra tattooing"],
+overview:"Thai and Khmer sacred yantra tattooing, traditionally applied by monks and ajarns with a long metal khem. Geometry, animals and Pali script combine, and the blessing ritual is part of the work, not an add-on.",related:["tribal","lettering","dotwork"]},
+{id:"tebori",name:"Tebori",tag:"Carved by hand.",family:"Japanese & East Asian",era:"Edo period onward",region:"Japan",status:"stub",aliases:["Hand-carved"],
+overview:"The Japanese hand technique: pigment inserted with a hand-held nomi of needles. Prized for the softness of its shading gradation, and often combined with machine outlines in modern practice.",related:["irezumi","handpoke"]},
+{id:"ignorant",name:"Ignorant Style",tag:"Bad on purpose.",family:"Contemporary & Digital",era:"2010s onward",region:"France, then global",status:"stub",aliases:["Naive style"],
+overview:"Anti-style scrawl descended from the graffiti writer Fuzi UVTPK: deliberately naive figures and crooked lines as a rejection of technical polish. The joke only works when the artist could draw it straight.",related:["graffiti","sticker-sleeve"]},
+{id:"cybersigilism",name:"Cybersigilism",tag:"Sigils for the terminally online.",family:"Contemporary & Digital",era:"2020s",region:"Digital-native",status:"stub",aliases:["Cyber sigil"],
+overview:"A 2020s digital-native style: thorned, vector-like linework resembling occult sigils crossed with Y2K tribal and interface aesthetics. Incubated almost entirely on social platforms before reaching studios.",related:["neo-tribal","glitch","chrome-y2k"]},
+{id:"ornamental",name:"Ornamental",tag:"Jewellery in ink.",family:"Geometric & Ornamental",era:"2010s onward",region:"Global",status:"stub",aliases:["Adornment"],
+overview:"Body adornment drawing on henna, lace, filigree and architectural ornament. Typically black, symmetrical and placement-led: sternum, spine, hands, nape. The body wears the design like jewellery.",related:["dotwork","geometric","mandala"]},
+{id:"sticker-sleeve",name:"Sticker Sleeve",tag:"A patchwork, not a plan.",family:"Contemporary & Digital",era:"2020s",region:"Global",status:"stub",aliases:["Patchwork sleeve"],
+overview:"Sleeves assembled from many small, unconnected pieces with open skin between, like stickers on a laptop lid. A generational rejection of the unified sleeve, and a scheduling model as much as an aesthetic.",related:["fine-line","ignorant","kawaii"]},
+{id:"embroidery",name:"Embroidery Style",tag:"Thread, faked flawlessly.",family:"Realism",era:"2010s onward",region:"Latin America, then global",status:"stub",aliases:["Cross-stitch","Patch style"],
+overview:"Trompe-l'oeil colour work imitating cross-stitch and embroidered patches, complete with rendered thread texture and fabric shadow. A novelty that matured into a genuine specialism.",related:["colour-realism","new-school"]},
+{id:"micro-realism",name:"Micro Realism",tag:"Realism under a loupe.",family:"Realism",era:"Late 2010s onward",region:"Global",status:"stub",aliases:["Micro-realistic"],
+overview:"Photographic rendering at miniature scale, enabled by cartridge needles and rotary machines. How this detail density ages over decades is the open question of the style, and honest studios say so.",related:["fine-line","black-grey-realism","portrait"]},
+{id:"anime",name:"Anime / Manga",tag:"Cel lines, forever.",family:"Japanese & East Asian",era:"2010s onward",region:"Global",status:"stub",aliases:["Manga style"],
+overview:"Faithful reproduction of Japanese animation aesthetics: flat cel shading, screen-tone textures and character-accurate line. Accuracy to the source material is the whole test.",related:["new-school","irezumi","kawaii"]},
+{id:"biomechanical",name:"Biomechanical",tag:"Giger's children.",family:"Contemporary & Digital",era:"1980s onward",region:"United States / Europe",status:"stub",aliases:["Biomech"],
+overview:"Flesh fused with machinery: pistons, chrome and sinew flowing with the wearer's musculature. Rooted in H. R. Giger's visual language and developed as a tattoo genre by artists such as Guy Aitchison.",related:["bio-organic","surrealism","dark-art"]},
+{id:"dark-art",name:"Dark Art",tag:"The beautiful grim.",family:"Black & Graphic",era:"2010s onward",region:"Europe / Global",status:"stub",aliases:["Horror","Macabre"],
+overview:"Horror, occult and macabre imagery in dense blacks: demons, memento mori, woodcut devils. Overlaps blackwork, etching and realism, unified by register rather than technique.",related:["blackwork","etching","surrealism"]},
+{id:"etching",name:"Etching / Engraving",tag:"The copperplate line.",family:"Black & Graphic",era:"2010s onward",region:"Europe",status:"stub",aliases:["Woodcut","Linocut style"],
+overview:"Tattooing that mimics old-master engraving and woodcut: parallel hatching, cross-hatched tone, medieval and alchemical subjects. Printmaking's five-hundred-year archive, reopened.",related:["blackwork","dark-art","illustrative","linework"]},
+{id:"mandala",name:"Mandala",tag:"The circle, earned.",family:"Geometric & Ornamental",era:"2010s onward",region:"Global",status:"stub",aliases:[],
+overview:"Radial sacred diagrams from Hindu and Buddhist practice, executed in dotwork and fine linework. Radial symmetry on a curved limb is the technical examination of the graphic tattooer.",related:["dotwork","ornamental","sacred-geometry","geometric"]},
+{id:"neo-tribal",name:"Neo-Tribal",tag:"The nineties, sharpened.",family:"Contemporary & Digital",era:"1990s, 2020s revival",region:"Western",status:"stub",aliases:[],
+overview:"The 1990s solid-black abstract style, currently revived and hybridised with cybersigilism. Distinct from the indigenous traditions it once loosely imitated, and best kept distinct.",related:["tribal","cybersigilism","blackwork"]},
+{id:"blast-over",name:"Blast-over",tag:"New ink over old.",family:"Black & Graphic",era:"2010s onward",region:"Global",status:"stub",aliases:["Blastover"],
+overview:"Bold blackwork tattooed directly over existing older tattoos, leaving both visible as layers. Part cover-up, part statement that the history underneath is allowed to show.",related:["blackwork","ignorant","linework"]},
+{id:"handpoke",name:"Handpoke",tag:"Machine-free.",family:"Fine Line & Minimal",era:"Ancient technique, modern scene",region:"Global",status:"stub",aliases:["Stick and poke","Hand-poked"],
+overview:"Tattooing by hand-held needle without a machine, spanning ancient traditions and the contemporary studio hand-poke scene. Slower, softer-edged and quieter, in every sense.",related:["dotwork","batok","sak-yant","tebori"]},
+{id:"single-needle",name:"Single Needle",tag:"One point of contact.",family:"Fine Line & Minimal",era:"1970s onward",region:"United States",status:"stub",aliases:["1RL"],
+overview:"Work executed on a single needle: the finest possible line and the softest grey. The Chicano-descended engine inside contemporary fine line.",related:["fine-line","chicano","micro-realism"]},
+{id:"minimalist",name:"Minimalist",tag:"The least that still speaks.",family:"Fine Line & Minimal",era:"2010s onward",region:"Global",status:"stub",aliases:[],
+overview:"Reduction to essential line and symbol: tiny glyphs, single outlines, austere geometry. A philosophy of scale and restraint as much as a style.",related:["fine-line","linework","negative-space"]},
+{id:"abstract",name:"Abstract",tag:"No subject, all form.",family:"Illustrative & Painterly",era:"Contemporary",region:"Global",status:"stub",aliases:[],
+overview:"Non-representational composition: marks, fields and gesture without a depicted subject. The fine-art end of the spectrum, often brush-influenced and often large.",related:["trash-polka","sketch","watercolour"]},
+{id:"negative-space",name:"Negative Space",tag:"The skin does the drawing.",family:"Black & Graphic",era:"2010s onward",region:"Global",status:"stub",aliases:[],
+overview:"Designs in which untattooed skin forms the subject and ink forms the ground. Demands flawless planning, since the image is the absence and cannot be added later.",related:["blackwork","blackout","geometric"]},
+{id:"glitch",name:"Glitch",tag:"The render error, kept.",family:"Contemporary & Digital",era:"Late 2010s onward",region:"Digital-native",status:"stub",aliases:["Glitch art"],
+overview:"Digital-corruption aesthetics applied to otherwise realist or graphic images: RGB channel splits, scanlines, displaced slices. The screen's failure modes, made permanent.",related:["cybersigilism","chrome-y2k","trash-polka"]},
+{id:"uv-blacklight",name:"UV / Blacklight",tag:"Visible only sometimes.",family:"Contemporary & Digital",era:"2000s onward",region:"Global",status:"stub",aliases:["UV ink"],
+overview:"Work in UV-reactive pigments that fluoresce under blacklight. Pigment safety history is chequered and studio policy varies; a category where the consultation matters more than the design.",related:["fine-line","minimalist"]},
+{id:"white-ink",name:"White Ink",tag:"A whisper of a tattoo.",family:"Fine Line & Minimal",era:"2000s onward",region:"Global",status:"stub",aliases:[],
+overview:"White-pigment-only work reading as embossing. Healing is unpredictable and results divide opinion sharply, which is precisely why it needs a candid consultation script.",related:["fine-line","minimalist","handpoke"]},
+{id:"portrait",name:"Portrait",tag:"A likeness, for life.",family:"Realism",era:"Contemporary",region:"Global",status:"stub",aliases:["Portraiture"],
+overview:"The realism sub-discipline of rendering specific faces. Likeness is binary for the client, which makes portraiture the least forgiving commission in tattooing.",related:["black-grey-realism","colour-realism","micro-realism"]},
+{id:"hyperrealism",name:"Hyperrealism",tag:"Sharper than the photograph.",family:"Realism",era:"2010s onward",region:"Global",status:"stub",aliases:[],
+overview:"Realism pushed past photographic fidelity: exaggerated micro-contrast, moisture, texture. The convention-circuit summit of technical display.",related:["colour-realism","portrait"]},
+{id:"bio-organic",name:"Bio-organic",tag:"Grown, not built.",family:"Contemporary & Digital",era:"1990s onward",region:"Global",status:"stub",aliases:["Bioorganic"],
+overview:"Biomechanical's organic sibling: coral, bone, tendon and alien flora flowing with anatomy, without the machinery. Placement-led by definition.",related:["biomechanical","surrealism","dark-art"]},
+{id:"chrome-y2k",name:"Chrome / Y2K",tag:"The airbrushed millennium.",family:"Contemporary & Digital",era:"1998-2004 source era, 2020s revival",region:"Western",status:"stub",aliases:["Y2K","Cyber chrome"],
+overview:"Metallic gradients, liquid chrome and butterfly revival iconography from the turn-of-the-millennium design era, returned via the nostalgia cycle. New School's glossier cousin.",related:["new-school","glitch","cybersigilism"]},
+{id:"gothic-blackletter",name:"Gothic / Blackletter",tag:"The heavy word.",family:"Lettering",era:"Medieval forms, modern specialism",region:"Global",status:"stub",aliases:["Fraktur","Textura"],
+overview:"Lettering in the fraktur and textura traditions: dense, angular, ecclesiastical weight. A specialism within lettering with heavy graffiti crossover.",related:["lettering","graffiti","dark-art"]},
+{id:"graffiti",name:"Graffiti",tag:"Letters that move.",family:"Lettering",era:"1990s onward",region:"Urban, global",status:"stub",aliases:["Wildstyle"],
+overview:"Tattooing carrying graffiti's letterform energy: throw-ups, wildstyle, drips and fills. Sibling to New School and cousin to formal lettering.",related:["lettering","new-school","ignorant"]},
+{id:"botanical",name:"Botanical",tag:"The herbarium sleeve.",family:"Illustrative & Painterly",era:"2010s onward",region:"Global",status:"stub",aliases:["Floral illustration"],
+overview:"Scientifically inclined plant illustration: etching-influenced florals, seed heads and fungi, usually in fine black line. The plate aesthetic of the Victorian herbarium, worn.",related:["illustrative","fine-line","etching"]},
+{id:"linework",name:"Linework",tag:"The line, load-bearing.",family:"Black & Graphic",era:"Contemporary",region:"Global",status:"stub",aliases:[],
+overview:"Work composed of line alone: contour and pattern with no fill or shading. The shared skeleton beneath several graphic styles, and a discipline in its own right.",related:["blackwork","geometric","minimalist","continuous-line"]},
+{id:"continuous-line",name:"Continuous Line",tag:"One line, no lifting.",family:"Fine Line & Minimal",era:"2010s onward",region:"Global",status:"stub",aliases:["Single line"],
+overview:"Designs drawn as one unbroken line, in the Picasso single-stroke tradition. Simplicity that punishes any wobble, since there is nowhere for an error to hide.",related:["linework","minimalist","sketch"]},
+{id:"kawaii",name:"Kawaii / Cute",tag:"Serious about not being serious.",family:"Japanese & East Asian",era:"2010s onward",region:"Japan-derived, global",status:"stub",aliases:["Cute style"],
+overview:"Japanese-cute-derived imagery: pastel food characters, chibi animals, soft palettes. Overlaps New School and sticker-sleeve culture, and is harder to execute well than it looks.",related:["new-school","anime","sticker-sleeve"]},
+{id:"sacred-geometry",name:"Sacred Geometry",tag:"The universe, plotted.",family:"Geometric & Ornamental",era:"2010s onward",region:"Global",status:"stub",aliases:[],
+overview:"Metatron's cube, the flower of life and related figures rendered in precise line and dot. The spiritual register distinguishes it from secular geometric work.",related:["geometric","dotwork","mandala"]},
+{id:"blackout",name:"Blackout",tag:"Total coverage.",family:"Black & Graphic",era:"2010s onward",region:"Global",status:"stub",aliases:["Heavy coverage"],
+overview:"Large areas of solid, saturated black: full sleeves or panels, used aesthetically and as heavy cover-up. A physical endurance piece for both parties, and a permanent one even by tattooing's standards.",related:["blackwork","negative-space","blast-over"]},
+{id:"haida",name:"Haida / Northwest Coast",tag:"Formline on skin.",family:"Indigenous & Sacred",era:"Ancient, revival",region:"Pacific Northwest Coast",status:"stub",aliases:["Formline"],
+overview:"The formline art of the Haida, Tlingit and neighbouring nations: ovoids and U-forms depicting clan crests. Revival led by Northwest Coast artists working inside the tradition's rules.",related:["tribal","polynesian"]}
+];
+
+const GLOSSARY=[
+["blast-over","Blast-over","Tattooing boldly over an existing tattoo, leaving both layers visible."],
+["blackout","Blackout","Solid, saturated black coverage over a large area of skin."],
+["blowout","Blowout","Ink dispersing below the intended layer of skin, blurring a line permanently."],
+["bold-will-hold","Bold will hold","Traditional's motto: thick lines and dense pigment survive decades."],
+["consultation","Consultation","The pre-tattoo conversation where design, placement, ageing and expectations are agreed."],
+["cover-up","Cover-up","A new tattoo designed to conceal an existing one."],
+["custom","Custom","A design drawn for one client, as opposed to flash."],
+["flash","Flash","Pre-drawn designs displayed for direct selection, traditionally as printed sheets."],
+["freehand","Freehand","Drawing the design directly on the skin rather than applying a stencil."],
+["greywash","Greywash","Black ink diluted to a range of grey tones; the medium of black and grey realism."],
+["hand-poke","Hand-poke","Tattooing with a hand-held needle and no machine."],
+["healed-result","Healed result","How a tattoo looks weeks or months after the session; the honest benchmark, as against fresh photographs."],
+["liner","Liner","A needle grouping configured for drawing lines."],
+["magnum","Magnum","A wide, flat needle grouping used for shading and colour packing."],
+["needle-grouping","Needle grouping","The count and arrangement of needles on the bar, such as 3RL or 9M."],
+["negative-space","Negative space","Untattooed skin used deliberately as part of the design."],
+["packing","Packing","Saturating an area with solid, even pigment."],
+["saturation","Saturation","How densely pigment sits in the skin; under-saturated work heals patchy."],
+["shader","Shader","A needle grouping configured for shading rather than lining."],
+["single-pass","Single pass","Completing a line or area in one movement, without reworking."],
+["single-needle","Single needle","Tattooing on one needle only; the finest line the medium allows."],
+["stencil","Stencil","The transferred outline applied to skin before tattooing begins."],
+["stippling","Stippling","Building tone from individual dots; the technique behind dotwork."],
+["tebori","Tebori","The Japanese hand technique using a rod-mounted needle group."],
+["touch-up","Touch-up","A follow-up session to refresh healed areas that settled unevenly."],
+["uhi","Uhi","The traditional Maori chisel used in ta moko."],
+["walk-in","Walk-in","A tattoo done same-day without prior booking, usually from flash."],
+["whip-shading","Whip shading","A flicking shading motion producing a gradient from dense to sparse."]
+];
+
+/* ---------- APP ---------- */
+const app=document.getElementById('app');
+const FAMILIES=[...new Set(STYLES.map(s=>s.family))];
+let q='', fam=null;
+
+const byId=id=>STYLES.find(s=>s.id===id);
+const roman=n=>['I','II','III'][n-1]||n;
+
+function plate(style,n){
+  return `<div class="plate" role="img" aria-label="Image placeholder for ${style.name}"><div>
+    <b>PLATE ${roman(n)} <i>◆</i> ${style.name.toUpperCase()}</b>
+    <span>AWAITING PORTFOLIO SELECTION · ARTIST CREDIT + SIGN-OFF REQUIRED</span>
+  </div></div>`;
+}
+function relChips(ids){
+  return `<div class="rel">`+ids.filter(byId).map(id=>{
+    const s=byId(id);return `<a href="#/style/${id}">${s.name}</a>`;
+  }).join('')+`</div>`;
+}
+function secHead(n,label){
+  return `<div class="sec"><b>${String(n).padStart(2,'0')}</b><span>${label}</span></div>`;
+}
+
+/* ---- home ---- */
+function renderHome(){
+  const cores=STYLES.filter(s=>s.status==='core').length;
+  let html=`
+  <p class="eyebrow">THE STYLE LIBRARY <span class="meta">· INTERNAL CONCEPT PROOF</span></p>
+  <h1 class="display">EVERY STYLE,<span class="pay">ONE SHELF.</span></h1>
+  <p class="dek">A working wiki of tattoo styles and sub-styles: history, characteristics, cultural context and craft, cross-linked and searchable. Core styles carry full articles; sub-styles stand as honest stubs, scheduled for depth.</p>
+  <div class="stats">
+    <div class="stat"><b>${STYLES.length}</b><span>STYLES CATALOGUED</span></div>
+    <div class="stat"><b>${cores}</b><span>FULL ARTICLES</span></div>
+    <div class="stat"><b>${GLOSSARY.length}</b><span>GLOSSARY TERMS</span></div>
+  </div>
+  <hr class="rule">
+  <input class="search" id="q" type="search" placeholder="Search styles, aliases, motifs..." value="${q.replace(/"/g,'&quot;')}" aria-label="Search the library">
+  <div class="chips" role="group" aria-label="Filter by family">
+    <button class="chip ${fam===null?'on':''}" data-fam="">ALL FAMILIES</button>
+    ${FAMILIES.map(f=>`<button class="chip ${fam===f?'on':''}" data-fam="${f}">${f.toUpperCase()}</button>`).join('')}
+  </div>
+  <div id="results"></div>`;
+  app.innerHTML=html;
+  const input=document.getElementById('q');
+  input.addEventListener('input',e=>{q=e.target.value;renderResults();});
+  app.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
+    fam=c.dataset.fam||null;
+    app.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
+    c.classList.add('on');renderResults();
+  }));
+  renderResults();
+}
+function match(s,needle){
+  const hay=[s.name,s.tag,s.family,s.region,s.era,(s.aliases||[]).join(' '),(s.motifs||'')].join(' ').toLowerCase();
+  return hay.includes(needle);
+}
+function row(s){
+  return `<li><a href="#/style/${s.id}">
+    <span><span class="r-name">${s.name}</span> &nbsp;<span class="r-tag">${s.tag}</span></span>
+    <span class="r-side">${s.status==='stub'?'<span class="stub">STUB</span> · ':''}${s.family.toUpperCase()}</span>
+  </a></li>`;
+}
+function renderResults(){
+  const box=document.getElementById('results');
+  const needle=q.trim().toLowerCase();
+  let list=STYLES.filter(s=>(!fam||s.family===fam)&&(!needle||match(s,needle)));
+  if(!list.length){box.innerHTML=`<p class="empty">Nothing on the shelf under that term. Try a motif, an alias, or a region.</p>`;return;}
+  if(needle){
+    box.innerHTML=`<ul class="rowlist" style="margin-top:1.6rem">${list.map(row).join('')}</ul>`;return;
+  }
+  const fams=fam?[fam]:FAMILIES;
+  box.innerHTML=fams.map((f,i)=>{
+    const items=list.filter(s=>s.family===f);
+    if(!items.length)return '';
+    items.sort((a,b)=>(a.status===b.status?a.name.localeCompare(b.name):a.status==='core'?-1:1));
+    return `<div class="fam-head"><b>${String(i+1).padStart(2,'0')}</b><span>${f}</span></div>
+      <ul class="rowlist">${items.map(row).join('')}</ul>`;
+  }).join('');
+}
+
+/* ---- style page ---- */
+function renderStyle(id){
+  const s=byId(id);
+  if(!s){renderHome();return;}
+  let n=0;
+  let html=`
+  <p class="crumb"><a href="#/">← INDEX</a></p>
+  <p class="eyebrow">${s.family.toUpperCase()} <span class="meta">· ${s.era.toUpperCase()} · ${s.region.toUpperCase()}</span></p>
+  <h1 class="display">${s.name.toUpperCase()}<span class="pay">${s.tag.toUpperCase()}</span></h1>
+  <p class="dek">${s.dek||s.overview}</p>`;
+  if(s.status==='core'){
+    html+=`<div class="plates">${plate(s,1)}${plate(s,2)}</div>`;
+    html+=secHead(++n,'STYLE HISTORY')+`<div class="body">${s.history.map(p=>`<p>${p}</p>`).join('')}</div>`;
+    html+=secHead(++n,'VISUAL CHARACTERISTICS')+`<div class="body"><ul>${s.visual.map(v=>`<li>${v}</li>`).join('')}</ul></div>`;
+    html+=secHead(++n,'KEY MOTIFS')+`<p class="motifs">${s.motifs}</p>`;
+    html+=secHead(++n,'CULTURAL CONTEXT')+`<div class="body"><p>${s.context}</p></div>`;
+    html+=secHead(++n,'TECHNICAL NOTES')+`<div class="body"><p>${s.technical}</p></div>`;
+  }else{
+    html+=`<div class="plates single">${plate(s,1)}</div>`;
+    html+=secHead(++n,'OVERVIEW')+`<div class="body"><p>${s.overview}</p></div>`;
+    html+=`<div class="stubnote"><b>THIS ENTRY IS A STUB. <i>DEPTH IS SCHEDULED.</i></b>
+      <span>FULL TREATMENT FOLLOWS THE CORE EIGHTEEN · STRUCTURE ALREADY IN PLACE</span></div>`;
+  }
+  if(s.aliases&&s.aliases.length){
+    html+=secHead(++n,'ALSO KNOWN AS')+`<p class="motifs">${s.aliases.join(' · ')}</p>`;
+  }
+  html+=secHead(++n,'RELATED & DESCENDANT STYLES')+relChips(s.related||[]);
+  html+=`<hr class="rule"><p class="crumb"><a href="#/">← BACK TO THE INDEX</a> &nbsp;·&nbsp; <a href="#/glossary">GLOSSARY →</a></p>`;
+  app.innerHTML=html;
+}
+
+/* ---- glossary ---- */
+function renderGlossary(term){
+  let html=`
+  <p class="crumb"><a href="#/">← INDEX</a></p>
+  <p class="eyebrow">REFERENCE <span class="meta">· ${GLOSSARY.length} TERMS</span></p>
+  <h1 class="display">THE WORDS<span class="pay">BEHIND THE WORK.</span></h1>
+  <p class="dek">One definition per term, anchored and linkable, so that every article in the Library points at the same vocabulary.</p>
+  <hr class="rule">
+  <dl class="glist">${GLOSSARY.map(([id,name,def])=>
+    `<dt id="${id}" class="${term===id?'hit':''}">${name}</dt><dd>${def}</dd>`).join('')}
+  </dl>`;
+  app.innerHTML=html;
+  if(term){const el=document.getElementById(term);if(el)el.scrollIntoView({block:'center'});}
+}
+
+/* ---- router ---- */
+function route(){
+  const h=location.hash.replace(/^#\/?/,'');
+  const parts=h.split('/').filter(Boolean);
+  window.scrollTo(0,0);
+  if(parts[0]==='style'&&parts[1]){renderStyle(parts[1]);}
+  else if(parts[0]==='glossary'){renderGlossary(parts[1]||null);}
+  else{renderHome();}
+}
+window.addEventListener('hashchange',route);
+route();
+</script>
+</body>
+</html>
